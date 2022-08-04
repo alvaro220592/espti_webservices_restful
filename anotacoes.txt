@@ -1,0 +1,14 @@
+criar banco de dados
+
+configurar .env
+
+aterar timezone em config/app.php - America/Sao_Paulo
+
+criar model e migration de categorias
+
+criar controller de categorias "Api\\CategoryController" no modelo --api
+
+criar as rotas dentro de routes/api.php. Essas rotas tem o prefixo 'api'
+
+aula 6 - filtragem
+    a função de filtragem pode ser feita na model e chamada no controller
