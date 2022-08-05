@@ -12,3 +12,11 @@ criar as rotas dentro de routes/api.php. Essas rotas tem o prefixo 'api'
 
 aula 6 - filtragem
     a função de filtragem pode ser feita na model e chamada no controller
+
+aula 9 - validação com form request
+    foi criado o request CategoryRequest
+    foi trocado o Request por CategoryRequest no cadastro e edição
+    é necessário inserir headers na requisição no postman/hoppscotch, senão, ele só redireciona e não mostra a validação:
+    
+    Content-Type: Application/json,
+    X-Requested-With: XMLHttpRequest

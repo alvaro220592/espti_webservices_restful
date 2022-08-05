@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
 class CategoryController extends Controller
@@ -18,7 +19,7 @@ class CategoryController extends Controller
         return $this->category->getResults($request->name);
     }
 
-    public function store(Request $request){
+    public function store(CategoryRequest $request){
         if ($this->category->create($request->all())) {
             return response()->json('Cadastrado com sucesso', 201);
         } else {
@@ -26,7 +27,16 @@ class CategoryController extends Controller
         }        
     }
 
-    public function update(Request $request, $id){
+    public function show($id){
+        $category = $this->category->find($id);
+
+        if(!$category)
+            return response()->json('Categoria não encontrada', 401);
+        
+        return response()->json($category, 200);
+    }
+
+    public function update(CategoryRequest $request, $id){
         $category = $this->category->find($id);
         
         if(!$category)
