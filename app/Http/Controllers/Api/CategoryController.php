@@ -16,6 +16,7 @@ class CategoryController extends Controller
     }
 
     public function index(Request $request){
+        // return response()->json(Category::pluck('id')->all());
         return $this->category->getResults($request->name);
     }
 

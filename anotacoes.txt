@@ -20,3 +20,9 @@ aula 9 - validação com form request
     
     Content-Type: Application/json,
     X-Requested-With: XMLHttpRequest
+
+aula 15 - FACTORY PRODUTOS API LARAVEL
+    foi feito um seeder pra usuários:
+    php artisan make:seeder UsersTableSeeder
+
+    Dá pra rdar um seeder específico chamando: php artisan db:seed --class=NomeDoSeeder
