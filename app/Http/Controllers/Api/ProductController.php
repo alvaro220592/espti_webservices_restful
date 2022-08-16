@@ -99,6 +99,8 @@ class ProductController extends Controller
             
             // Nome final:
             $nome_final = "$nome.$extensao";
+
+            // Retirando o "/temp/" do nome
             $nome_final = explode('/', $nome_final)[2];
             
             // Upload (foi feito o link simbólico e configuração no app/config/filesystem.php. As instruções estão no anotacoes.txt)
