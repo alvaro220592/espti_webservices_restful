@@ -12,7 +12,8 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'image'
+        'image',
+        'category_id'
     ];
 
     public function getResults($data, $total){

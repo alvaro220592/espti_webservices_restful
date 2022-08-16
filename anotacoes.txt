@@ -26,3 +26,11 @@ aula 15 - FACTORY PRODUTOS API LARAVEL
     php artisan make:seeder UsersTableSeeder
 
     Dá pra rdar um seeder específico chamando: php artisan db:seed --class=NomeDoSeeder
+
+aula 25 - configuração para upload de arquivos
+    em app/config/filesystem.php existe o array 'disks' com uma lista onde tem o 'public', que nesse caso é o ideal.
+    Então no array 'default', foi trocado o 'local' par 'public'.
+    depois é necessário criar um link simbólico com 'php artisan storage:link' para criar uma espécie de atalho entre a pasta storage/app/public e a public
+
+Aula 26 - Edição de imagem no update
+    IMPORTANTE - ao alterar, é preciso fazer a requisição do tipo POST pra aceitar a alteração de arquivo e aí manda um request assim: _method : 'PUT'
