@@ -39,8 +39,30 @@ class ProductController extends Controller
         $data = $request->all();
 
         // Ver se o request tem uma imagem e se essa imagem é válida
+        // if($request->hasFile('image') && $request->file('image')->isValid()){
+        //     $this->uploadImagem($request->name, $request->file('image'), $data['image'], 'products');
+        // }
         if($request->hasFile('image') && $request->file('image')->isValid()){
-            $this->uploadImagem($request->name, $request->file('image'), $data['image'], 'products');
+
+            $nome = $request->file('image');
+
+            // Definindo a extensão
+            $extensao = $request->file('image')->extension();
+            
+            // Nome final:
+            $nome_final = "$nome.$extensao";
+
+            // Retirando o "/temp/" do nome
+            $nome_final = explode('/', $nome_final)[2];
+            
+            // Upload (foi feito o link simbólico e configuração no app/config/filesystem.php. As instruções estão no anotacoes.txt)
+            $upload = $request->file('image')->storeAs('products/', $nome_final);
+            
+            if(!$upload){
+                return response()->json('Erro ao inserir imagem', 500);
+            }
+            
+            $data['image'] = $nome_final;
         }
 
         // Carregando o produto com os dados
@@ -133,6 +155,12 @@ class ProductController extends Controller
             return response()->json('Producto não encontrado', 404);
         }
 
+        // Se o produto tiver imagem armazenada, ela será apagada
+        if($product->image){
+            if(Storage::exists("products/{$product->image}")){
+                Storage::delete("products/{$product->image}");
+            }
+        }
         return $product->delete() ? 
             response()->json('Excluído com sucesso') : 
             response()->json('Erro ao excluir', 500);
