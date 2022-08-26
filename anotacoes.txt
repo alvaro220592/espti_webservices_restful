@@ -44,3 +44,29 @@ Aula 31 - versionamento de api
     os controllers foram movidos para uma pasta vhamada 'v1' e em seus namespaces foram adicionados 'v1\'
     api.php - as rotas feitas até aqui foram colocadas em um grupo de prefixo 'v1' e nas chamadas dos controllers foram adicionados os 'v1'
     nas chamadas das requisições(no postman/hoppscotch, por exemplo), foi adicionado o 'v1' depois do 'api/'
+
+aula 33 - limite de requisições na api
+    em App\Http\Kernel.php há o array api, onde se define o nº de requisições e o tempo de bloqueio: 60,1
+
+aula 34 - tratamento de exceções
+    em app/Exceptions/Handler.php: precisa ver como faz no laravel 8
+
+aula 35 - tratamento de exceções ajax
+    dentro da verificação da excessão no arquivo citado acima:
+    if($exception instanceof classeDaExcecao){
+        if($request->expectsJson()){   ----> é isso
+
+        }
+    }
+
+aula 37 - liberar cors no laravel
+    instalar o pacote spatie/laravel-cors: github.com/spatie/laravel-cors#laravel
+        composer require spatie/laravel-cors
+
+    em kernel.php, no array 'api', adicione \Spatie\Cors\Cors::class
+    pra gerar oo arquivo de configuração config/cors.php, rode no terminal: php artisan vendor:publish --provider="Spatie\Cors\CorsServiceProvider" --tag="config"
+
+aula 38 - traduzindo a api 
+    clone o repo https://github.com/Laravel-Lang/lang
+    dentro de locales, pegue a pasta da lingua desejada e mova/copie para resource/lang
+    em config/app.php, na chave do array chamada 'locale' e na 'fallback_locale', ponha o nome da pasta que vc colou lá no lang
