@@ -14,4 +14,8 @@ class Category extends Model
     public function getResults($name){
         return $this->where('name', 'LIKE', "%$name%")->get();
     }
+
+    public function products(){
+        return $this->hasMany(Product::class, 'category_id');
+    }
 }

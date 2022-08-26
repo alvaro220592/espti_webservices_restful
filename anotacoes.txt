@@ -34,3 +34,13 @@ aula 25 - configuração para upload de arquivos
 
 Aula 26 - Edição de imagem no update
     IMPORTANTE - ao alterar, é preciso fazer a requisição do tipo POST pra aceitar a alteração de arquivo e aí manda um request assim: _method : 'PUT'
+
+Aula 29 - listar produtos por categoria
+    exemplo de rota:
+        Route::get('categories/{id}/products', [CategoryController::class, 'metodo']);
+
+Aula 31 - versionamento de api
+    Foi refeita a estrutura para denominar na versão 1('v1'):
+    os controllers foram movidos para uma pasta vhamada 'v1' e em seus namespaces foram adicionados 'v1\'
+    api.php - as rotas feitas até aqui foram colocadas em um grupo de prefixo 'v1' e nas chamadas dos controllers foram adicionados os 'v1'
+    nas chamadas das requisições(no postman/hoppscotch, por exemplo), foi adicionado o 'v1' depois do 'api/'

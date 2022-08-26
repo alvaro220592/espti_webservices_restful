@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\v1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -61,5 +61,20 @@ class CategoryController extends Controller
         } else {
             return response()->json('Erro ao deletar', 500);
         }        
+    }
+
+    public function products($id){
+        $category = $this->category->with('products')->find($id);
+        if(!$category){
+            return response()->json('Categoria não encontrada', 404);
+        }
+
+        // Para paginar, é preciso fazer essas 2 consultas: a de categoria e a de produtos
+        $products = $category->products()->paginate(2);
+
+        return response()->json([
+            'categoria' => $category->name,
+            'produtos' => $products
+        ]);
     }
 }

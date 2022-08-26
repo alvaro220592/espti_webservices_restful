@@ -19,7 +19,7 @@ class Product extends Model
     public function getResults($data, $total){
 
         if(!isset($data['filter']) && !isset($data['name']) && !isset($data['description'])){
-            return response()->json($this->paginate($total));
+            return response()->json($this->with('category')->paginate($total));
         }
 
         return $this->where(function($query) use ($data){
